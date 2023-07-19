@@ -1,0 +1,59 @@
+<?php
+  
+use Illuminate\Support\Facades\Route;
+  
+use App\Http\Controllers\HomeController;
+use App\Http\Controllers\KelurahanController;
+use App\Http\Controllers\PasienController;
+use Illuminate\Support\Facades\Auth;
+  
+/*
+|--------------------------------------------------------------------------
+| Web Routes
+|--------------------------------------------------------------------------
+|
+| Here is where you can register web routes for your application. These
+| routes are loaded by the RouteServiceProvider within a group which
+| contains the "web" middleware group. Now create something great!
+|
+*/
+  
+Route::get('/', function () {
+    return view('auth/login');
+});
+  
+Auth::routes();
+  
+/*------------------------------------------
+--------------------------------------------
+All Normal Users Routes List
+--------------------------------------------
+--------------------------------------------*/
+Route::middleware(['auth', 'user-access:user'])->group(function () {
+  
+    Route::get('/home', [HomeController::class, 'index'])->name('home');
+});
+  
+/*------------------------------------------
+--------------------------------------------
+All Admin Routes List
+--------------------------------------------
+--------------------------------------------*/
+Route::middleware(['auth', 'user-access:admin'])->group(function () {
+  
+    Route::get('/admin/home', [HomeController::class, 'adminHome'])->name('admin.home');
+    Route::resource('kelurahan', KelurahanController::class);
+
+});
+  
+/*------------------------------------------
+--------------------------------------------
+All Admin Routes List
+--------------------------------------------
+--------------------------------------------*/
+Route::middleware(['auth', 'user-access:operator'])->group(function () {
+  
+    Route::get('/operator/home', [HomeController::class, 'operatorHome'])->name('operator.home');
+    Route::resource('pasien', PasienController::class);
+Route::get('pasien/kartu/{id}', [PasienController::class, 'kartu_pasien'])->name('kartu.pasien');
+});

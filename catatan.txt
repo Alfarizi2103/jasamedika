@@ -1,0 +1,28 @@
+{\rtf1\ansi\ansicpg1252\cocoartf2709
+\cocoatextscaling0\cocoaplatform0{\fonttbl\f0\fswiss\fcharset0 Helvetica;}
+
+
+How to run
+Composer install && composer update
+Composer require laravel/ui
+Php artisan ui bootstrap '97auth
+Npm install && rpm run dev
+composer require barryvdh/laravel-dompdf
+Php artisan key:generate
+Php artisan migrate '97seed
+Php artisan serve
+
+
+Tools : - visual studio code
+	 - firefox
+	- dbeaver
+	- mysql
+	- GitHub
+
+Framework : - laravel 10
+		- bootstrap
+
+Library : - dompdf
+	   -  laravel ui
+
+Feature test : -php artisan test --filter=AdminTest
